@@ -376,7 +376,8 @@ module.exports = function (grunt) {
             '*.html',
             'views/{,*/}*.html',
             'images/{,*/}*.{webp}',
-            'styles/fonts/{,*/}*.*'
+            'styles/fonts/{,*/}*.*',
+            'bower.json'
           ]
         }, {
           expand: true,
@@ -386,9 +387,15 @@ module.exports = function (grunt) {
         }, {
           expand: true,
           cwd: '.',
-          src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
+          src: 'bower_components/**/*',
           dest: '<%= yeoman.dist %>'
         }]
+      },
+      bower: {
+        expand: true,
+        cwd: './',
+        dest: '<%= yeoman.dist %>',
+        src: 'bower.json'
       },
       styles: {
         expand: true,
@@ -460,8 +467,8 @@ module.exports = function (grunt) {
     'autoprefixer',
     'concat',
     'ngAnnotate',
+    'copy:bower',
     'copy:dist',
-    'cdnify',
     'cssmin',
     'uglify',
     'filerev',
